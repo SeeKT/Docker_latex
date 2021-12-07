@@ -5,6 +5,10 @@
 
 本当にありがとうございます．
 
+### 動作確認
+- Linux (Docker Engine)
+- Windows (WSL2 + Docker Desktop)
+
 ### ディレクトリ構造
 ```
 |- .devcontainer/
@@ -29,4 +33,4 @@
     - `bibtex` or `pbibtex`
 
 ### 使い方
-VSCode の LaTeX Workshop を使う．使い方はブログに書いてます．
+VSCode の LaTeX Workshop を使う．使い方は [ブログ](https://tachibana-ai.netlify.app/post/docker_latex/) に書いてます．
