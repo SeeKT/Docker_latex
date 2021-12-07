@@ -1,0 +1,157 @@
+% パッケージなど
+\usepackage{bxdpx-beamer}
+%\usepackage{pxjahyper}
+%\usepackage{minijs}
+%\usepackage{algorithm, algorithmic}
+\usepackage{graphicx, url, float, booktabs, listings, color, pdfpages, amsmath, amssymb, latexsym, mathtools, ascmac, amsfonts, comment, bm}
+\usepackage{color}
+%\usepackage{diagbox}
+%\usepackage{otf}
+\usepackage{multirow,array}
+% textbfのフォント設定
+%\renewcommand{\textbf}[1]{{\bfseries\sffamily#1}}
+
+% 定理環境
+%\newtheorem{definition}{Definition}
+
+%%%%%%%%%% Meiryoを使いたい %%%%%%%%%%
+% 参考: https://risa.is.tokushima-u.ac.jp/~tetsushi/howtomakeslides.pdf
+%\usepackage{zxjatype}
+%\setCJKmainfont[Scale=0.95]{Meiryo}
+% Ubuntuの場合，Windows PCからttcファイルをコピーする (参考: https://the-bluestars.com/2020/07/21/47/)
+% コンパイルはxelatexを使う
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% 下にあるナビゲーションシンボルを消す
+\setbeamertemplate{navigation symbols}{}
+% 2020/11/6
+% itemizeが表示されない問題に対して，これを追加
+% https://oku.edu.mie-u.ac.jp/tex/mod/forum/discuss.php?d=2963
+\makeatletter
+\def\pgfutil@insertatbegincurrentpagefrombox#1{%
+  \edef\pgf@temp{\the\wd\pgfutil@abb}%
+  \global\setbox\pgfutil@abb\hbox{%
+    \unhbox\pgfutil@abb%
+    \hskip\dimexpr2in-2\hoffset-\pgf@temp\relax% changed
+    #1%
+    \hskip\dimexpr-2in-2\hoffset\relax% new
+  }%
+}
+\makeatother
+
+% textposパッケージによって，絶対座標で図表位置を指定
+% https://blog.tokor.org/2018/01/19/LaTeX-Beamer%E3%81%A7%E5%9B%B3%E8%A1%A8%E3%81%AA%E3%81%A9%E3%81%AE%E4%BD%8D%E7%BD%AE%E3%82%92%E7%B5%B6%E5%AF%BE%E5%BA%A7%E6%A8%99%E3%81%A7%E6%8C%87%E5%AE%9A%E3%81%99%E3%82%8B%E6%96%B9%E6%B3%95/
+\usepackage[absolute,overlay]{textpos}
+
+% デフォルトのフォントをゴシックにする
+%\renewcommand{\kanjifamilydefault}{\gtdefault}
+
+% デフォルトのフォントをArialにする
+%\renewcommand{\rmdefault}{phv} % Arial
+%\renewcommand{\sfdefault}{phv} % Arial
+
+
+% 数式フォントをarticleと同じにする
+\usefonttheme{professionalfonts}
+
+% 丸数字 (title)
+% https://livingdead0812.hatenablog.com/entry/20161005/1475654232
+\newcommand{\ctext}[1]{\raise0.2ex\hbox{\textcircled{\large{#1}}}}
+
+
+%% 各sectionごとに目次スライドの表示
+\AtBeginSection[]{
+    \frame{\tableofcontents[currentsection]} %目次スライド
+}
+
+% 色の定義: https://irocore.com/
+% rgbの値を256で割る
+% 赤系
+\definecolor{shinshu}{rgb}{0.83984375, 0.14453125, 0} % 真朱
+\definecolor{shinku}{rgb}{0.67578125, 0, 0.17578125}  % 深紅
+\definecolor{akadaidai}{rgb}{0.9140625, 0.33203125, 0.0234375}  % 赤橙
+% 青系
+\definecolor{konpeki}{rgb}{0, 0.35546875, 0.59375}  % 紺碧
+\definecolor{seiran}{rgb}{0, 0.33203125, 0.55859375}  % 青藍
+\definecolor{amairo}{rgb}{0, 0.5234375, 0.796875} % 天色
+\definecolor{kon}{rgb}{0, 0.1015625, 0.26171875}  % 紺
+\definecolor{gunjou}{rgb}{0, 0.35546875, 0.6640625} % 群青色
+% 緑系
+\definecolor{shinpeki}{rgb}{0, 0.3671875, 0.08203125} % 深碧
+% 黄系
+\definecolor{lemon}{rgb}{0.921875, 0.87109375, 0.16796875}  % 檸檬色
+\definecolor{yamabuki}{rgb}{0.96875, 0.703125, 0} % 山吹色
+% アンダーライン
+\newcommand{\redunderline}[1]{\textcolor{akadaidai}{\underline{\textcolor{black}{#1}}}}   %赤
+\newcommand{\blueunderline}[1]{\textcolor{gunjou}{\underline{\textcolor{black}{#1}}}}   %青
+\newcommand{\greenunderline}[1]{\textcolor{shinpeki}{\underline{\textcolor{black}{#1}}}}   %青
+\newcommand{\yellowunderline}[1]{\textcolor{yamabuki}{\underline{\textcolor{black}{#1}}}}   %青
+
+% 補足スライド (ページ番号のmaxを更新しない)
+\newcommand{\backupbegin}{
+   \newcounter{framenumberappendix}
+   \setcounter{framenumberappendix}{\value{framenumber}}
+}
+\newcommand{\backupend}{
+   \addtocounter{framenumberappendix}{-\value{framenumber}}
+   \addtocounter{framenumber}{\value{framenumberappendix}}
+}
+
+\usepackage{tcolorbox}
+% These options will be applied to all `tcolorboxes`
+\tcbset{%
+  noparskip,
+  colback=gray!10, %background color of the box
+  colframe=gray!40, %color of frame and title background
+  coltext=black, %color of body text
+  coltitle=black, %color of title text
+  fonttitle=\bfseries,
+  left=4pt, right=4pt,
+  alerted/.style={coltitle=white,
+                  colframe=red!75!black,
+                  colback=red!5!white},
+  example/.style={coltitle=black,
+                   colframe=green!20,
+                   colback=green!5},
+}
+
+% tex 文字色
+\newcommand{\red}[1]{\textcolor{akadaidai}{#1}} % 赤 (赤橙)
+\newcommand{\rred}[1]{\textcolor{red}{#1}}
+\newcommand{\bblue}[1]{\textcolor{blue}{#1}}
+\newcommand{\blue}[1]{\textcolor{gunjou}{#1}} % 青 (群青色)
+\newcommand{\green}[1]{\textcolor{shinpeki}{#1}} % 緑 (深碧)
+\newcommand{\yellow}[1]{\textcolor{yamabuki}{#1}}  % 黄 (檸檬)
+
+% caption
+\usepackage[hang,small,bf]{caption}
+\usepackage[subrefformat=parens]{subcaption}
+
+% beamerのテーマ
+%\usetheme{default}
+%\usetheme{AnnArbor}
+%\usetheme{Antibes}
+%\usetheme{Bergen}
+%\usetheme{Berkeley}
+%\usetheme{Berlin}
+\usetheme{Boadilla}
+%\usetheme{CambridgeUS}
+%\usetheme{Copenhagen}
+%\usetheme{Darmstadt}
+%\usetheme{Dresden}
+%\usetheme{Frankfurt}
+%\usetheme{Goettingen}
+%\usetheme{Hannover}
+%\usetheme{Ilmenau}
+%\usetheme{JuanLesPins}
+%\usetheme{Luebeck}
+%\usetheme{Madrid}
+%\usetheme{Malmoe}
+%\usetheme{Marburg}
+%\usetheme{Montpellier}
+%\usetheme{PaloAlto}
+%\usetheme{Pittsburgh}
+%\usetheme{Rochester}
+%\usetheme{Singapore}
+%\usetheme{Szeged}
+%\usetheme{Warsaw}

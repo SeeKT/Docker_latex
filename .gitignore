@@ -1,0 +1,10 @@
+*.aux
+*.log 
+*.synctex.gz
+*.dvi
+*.fdb_latexmk 
+*.fls 
+*.nav
+*.out
+*.snm 
+*.toc

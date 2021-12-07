@@ -1,0 +1,88 @@
+// 参考: https://github.com/korosuke613/texlive-ja-devcontainer-template
+{
+    "latex-workshop.view.pdf.internal.synctex.keybinding": "double-click",
+    // 勝手にビルドしないようにする(デフォルトではセーブ時にビルド)
+    "latex-workshop.latex.autoBuild.run": "never",
+    "editor.wordSeparators": "./\\()\"'-:,.;<>~!@#$%^&*|+=[]{}`~?　，．「」【】『』（）！？てにをはがのともへでや",
+    "latex-workshop.latex.tools": [
+        // latexmk を利用した platex によるビルドコマンド
+        {
+          "name": "Latexmk (pLaTeX)",
+          "command": "latexmk",
+          "args": [
+            "-f", 
+            "-gg", 
+            "-pv", 
+            "-latex='platex'", 
+            "-latexoption='-kanji=utf8 -no-guess-input-env'",
+            "-synctex=1",
+            "-interaction=nonstopmode", 
+            "-file-line-error", 
+            "%DOC%"
+          ]
+        },
+        // pdflatex
+        {
+          "name": "pdflatex",
+          "command": "pdflatex",
+          "args": [
+            "-synctex=1",
+            "-interaction=nonstopmode",
+            "-file-line-error",
+            "%DOC%"
+          ]
+        },
+        // bibtex
+        {
+          "name": "bibtex",
+          "command": "bibtex",
+          "args": [
+            "%DOCFILE%"
+          ]
+        },
+        // xelatex
+        {
+          "name": "xelatex",
+          "command": "xelatex",
+          "args": [
+            "%DOC%"
+            ]
+        }
+    ],
+
+    // latex-workshop.latex.recipes: Recipe の定義
+    "latex-workshop.latex.recipes": [
+        // LaTeX(pLaTeX) で書かれた文書のビルドレシピ
+        {
+          "name": "pLaTeX",
+          "tools": [
+            "Latexmk (pLaTeX)"
+          ]
+        },
+        // 英文コンパイル
+        {
+          "name": "pdflatex",
+          "tools": [
+            "pdflatex",
+          ]
+        },
+        // 英文 bibtex
+        {
+          "name": "bibtex",
+          "tools": [
+            "bibtex",
+            "pdflatex",
+            "pdflatex"
+          ]
+        },
+        // スライド xelatex
+        {
+          "name": "xelatex",
+          "tools":[
+            "xelatex",
+          ]
+        },
+    ],
+
+    "latex-workshop.view.pdf.viewer": "tab",
+}

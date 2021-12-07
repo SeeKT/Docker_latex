@@ -1,0 +1,52 @@
+%\RequirePackage{fix-cm}
+\documentclass[aspectratio=169, unicode, 14pt]{beamer}
+% コンパイル: xelatex
+
+\input {./preamble_p.tex}
+\title[short title]{Title}
+%\subtitle{subtitle}
+\author{\underline{Ai Tachibana}} % Your name
+\institute[]
+{
+Graduate School of Engineering Science, Osaka University
+}
+\date{December 7, 2021} % Date, can be changed to a custom date
+\begin{document}
+
+\begin{frame}
+\frametitle{}
+\titlepage
+\end{frame}
+
+
+\section*{Outline}
+\begin{frame}[t]\frametitle{Outline}
+\tableofcontents
+\end{frame}
+
+\section{Conclusion and future work}
+\begin{frame}[t]\frametitle{Conclusion}
+  \begin{itemize}
+    \item Docker
+    \item VSCode
+  \end{itemize}
+\end{frame}
+
+\backupbegin
+
+\section*{Appendix}
+\begin{frame}
+  \textbf{\LARGE{Appendix}}
+\end{frame}
+
+\subsection*{Model}
+\begin{frame}[t]\frametitle{Model}
+  \begin{align}
+  y = ax + b \nonumber
+  \end{align}
+\end{frame}
+
+
+\backupend
+
+\end{document}
