@@ -10,7 +10,7 @@
 		"james-yu.latex-workshop"
 	],
 	// ここに記載している"service"名とdocker-compose.ymlに記載している"service"を一致させる
-	"service": "python",
+	"service": "latex",
 	// コンテナ内に入ったときのworkdir
 	"workspaceFolder": "/home/user/texsrc",
 	// VSCodeを閉じたときのアクション
