@@ -9,6 +9,9 @@
 - Linux (Docker Engine)
 - Windows (WSL2 + Docker Desktop)
 
+### 用意するもの
+- Docker Engine (Docker Desktop)
+
 ### ディレクトリ構造
 ```
 |- .devcontainer/
@@ -33,4 +36,6 @@
     - `bibtex` or `pbibtex`
 
 ### 使い方
+このリポジトリをクローンする，もしくは zip をダウンロードする．
+
 VSCode の LaTeX Workshop を使う．使い方は [ブログ](https://tachibana-ai.netlify.app/post/docker_latex/) に書いてます．
